@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel New Tamanna Palace</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #8B4513;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0; }
+        header p { margin: 5px 0 0; }
+
+        nav {
+            background: #5c3310;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.08);
+        }
+
+        h2 { margin-top: 0; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+            gap: 20px;
+        }
+
+        .amenities-list li {
+            margin-bottom: 5px;
+        }
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+            gap: 15px;
+        }
+        .room-card {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 10px 12px;
+        }
+        .room-card h3 {
+            margin-top: 0;
+        }
+        .price {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        /* SLIDER STYLES */
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .mySlide {
+            display: none;
+        }
+        .mySlide img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .slide-caption {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* Prev/Next buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 8px 12px;
+            margin-top: -22px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 3px;
+            user-select: none;
+            background: rgba(0,0,0,0.4);
+        }
+        .prev { left: 8px; }
+        .next { right: 8px; }
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.7);
+        }
+
+        /* Dots */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 3px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .active-dot {
+            background-color: #8B4513;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+            gap: 15px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background: #8B4513;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button.secondary {
+            background: #1f7a1f;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #5c3310;
+            color: #fff;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            nav { font-size: 13px; }
+            .btn-row { flex-direction: column; }
+            .mySlide img { height: 260px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>Hotel New Tamanna Palace</h1>
+        <p>3A, Sawan Nagar, Lalghati, Indore Road, Bhopal (M.P.) – Family Hotel with AC / Non‑AC Rooms</p>
+    </header>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <h2>About Hotel</h2>
+        <div class="two-col">
+            <div>
+                <p>
+                    Hotel New Tamanna Palace Bhopal me comfortable stay ke liye AC / Non‑AC rooms, neat & clean
+                    interiors aur friendly staff provide karta hai. Ye text tum apne hisaab se aur detail me edit kar sakte ho.
+                </p>
+                <ul class="amenities-list">
+                    <li>Super Deluxe, Deluxe aur Executive Non‑AC rooms</li>
+                    <li>24x7 front desk / reception</li>
+                    <li>Free Wi‑Fi</li>
+                    <li>Parking facility</li>
+                    <li>Room service</li>
+                    <li>CCTV security</li>
+                    <li>Banquet & Restaurant (as per availability)</li>
+                </ul>
+            </div>
+            <div>
+                <p><strong>Location:</strong> 3A, Sawan Nagar, Lalghati, Indore Road, Bhopal (M.P.)</p>
+                <p><strong>Nearby:</strong> Lalghati Chowk, Airport Road, local market & transport easily available.</p>
+                <p><strong>Check‑in:</strong> 12:00 PM &nbsp; | &nbsp; <strong>Check‑out:</strong> 11:00 AM</p>
+                <p class="note">About section ka content tum Notepad / VS Code me kholkar change kar sakte ho.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOMS / TARIFF -->
+    <section id="rooms">
+        <h2>Rooms & Tariff</h2>
+        <div class="rooms">
+            <div class="room-card">
+                <h3>Super Deluxe A/C Room</h3>
+                <p>Spacious AC room with modern interior, TV, attached bathroom.</p>
+                <p class="price">₹2,199 (Single)</p>
+            </div>
+            <div class="room-card">
+                <h3>Deluxe A/C Room</h3>
+                <p>Comfortable AC room, ideal for business and family travellers.</p>
+                <p class="price">₹1,499 (Single)</p>
+            </div>
+            <div class="room-card">
+                <h3>Executive Non A/C Room</h3>
+                <p>Budget friendly non‑AC room with essential amenities.</p>
+                <p class="price">₹1,199 (Single)</p>
+            </div>
+            <div class="room-card">
+                <h3>Extra Person</h3>
+                <p>Extra mattress / bedding as per requirement.</p>
+                <p class="price">₹500 per person</p>
+            </div>
+        </div>
+        <p class="note">GST extra as applicable. Breakfast complimentary (tariff board ke hisaab se).</p>
+    </section>
+
+    <!-- GALLERY SLIDER -->
+    <section id="gallery">
+        <h2>Photo Gallery</h2>
+
+        <div class="slider-container">
+
+            <div class="mySlide">
+                <img src="935e9d8b-56e8-4474-9c40-3e4473b63394.jpg" alt="Hotel Front View">
+                <div class="slide-caption">Hotel New Tamanna Palace – Front View</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="57308cef-c6bf-47c1-a5f7-21691f6ebfe8.jpg" alt="Hotel Branding">
+                <div class="slide-caption">Hotel Branding</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="8d424dcd-84ae-41cc-9f92-b37e7db47239.jpg" alt="Room Tariff">
+                <div class="slide-caption">Room Tariff & QR Code</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="b8bfb75e-c1b4-4f7b-ba2d-24859ebfb5c3.jpg" alt="Reception 1">
+                <div class="slide-caption">Reception & Lobby Area</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="b1400905-b475-45ca-8e99-5ede2af53ede.jpg" alt="Reception 2">
+                <div class="slide-caption">Lobby Sitting Area</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="260df47a-d9e0-452d-afe8-c42520cc6786.jpg" alt="Room 1">
+                <div class="slide-caption">Guest Room – View 1</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="8db26a38-3419-4a7d-85a0-5bc2fb8518c2.jpg" alt="Room 2">
+                <div class="slide-caption">Guest Room – View 2</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="8e94fa37-f527-414e-aca8-760180feb3c0.jpg" alt="Room 3">
+                <div class="slide-caption">Guest Room – View 3</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="63c704fd-ae58-48c6-8f2e-648b108e27a0.jpg" alt="Room 4">
+                <div class="slide-caption">Guest Room – View 4</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="2d52f257-99b9-474e-9167-534b0efb39ed.jpg" alt="Room 5">
+                <div class="slide-caption">Guest Room – View 5</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="66545029-1536-41b5-afea-5258c7fd934f.jpg" alt="Family Room">
+                <div class="slide-caption">Spacious Family Room</div>
+            </div>
+
+            <div class="mySlide">
+                <img src="695ea088-26f4-46a6-a4a8-02cac766289b.jpg" alt="Bathroom">
+                <div class="slide-caption">Attached Bathroom</div>
+            </div>
+
+            <!-- Prev/Next buttons -->
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+
+        <!-- Dots -->
+        <div class="dots">
+            <!-- 12 dots, sliders count ke equal -->
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+            <span class="dot" onclick="currentSlide(9)"></span>
+            <span class="dot" onclick="currentSlide(10)"></span>
+            <span class="dot" onclick="currentSlide(11)"></span>
+            <span class="dot" onclick="currentSlide(12)"></span>
+        </div>
+
+        <p class="note">
+            Sab images index.html ke saath same folder me hone chahiye; naam bilkul same rehna chahiye.
+        </p>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking">
+        <h2>Online Booking Request</h2>
+        <p>
+            Guest yahan se booking request bhej sakte hain.  
+            Formspree endpoint dalne ke baad details tumhare email par aayengi,
+            aur WhatsApp button se same details tumhare WhatsApp par jayengi.
+        </p>
+
+        <form
+            id="booking-form"
+            action="YOUR_FORMSPREE_ENDPOINT_HERE"
+            method="POST"
+        >
+            <div class="form-grid">
+                <div>
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="Full Name" required>
+
+                    <label for="phone">Mobile Number</label>
+                    <input type="tel" id="phone" name="Phone" required placeholder="+91-XXXXXXXXXX">
+
+                    <label for="email">Email (optional)</label>
+                    <input type="email" id="email" name="Email" placeholder="example@mail.com">
+                </div>
+
+                <div>
+                    <label for="checkin">Check‑in Date</label>
+                    <input type="date" id="checkin" name="Check-in Date" required>
+
+                    <label for="checkout">Check‑out Date</label>
+                    <input type="date" id="checkout" name="Check-out Date" required>
+
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" name="Guests" min="1" value="2" required>
+
+                    <label for="room_type">Room Type</label>
+                    <select id="room_type" name="Room Type" required>
+                        <option value="">Select room type</option>
+                        <option>Super Deluxe A/C</option>
+                        <option>Deluxe A/C</option>
+                        <option>Executive Non A/C</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="message">Special Requests / Message</label>
+            <textarea id="message" name="Message" placeholder="Early check-in, extra bed, etc."></textarea>
+
+            <input type="hidden" name="Form Type" value="Hotel New Tamanna Palace Booking">
+
+            <div class="btn-row">
+                <button type="submit">Email Booking Request</button>
+                <button type="button" class="secondary" id="whatsapp-btn">
+                    WhatsApp Booking
+                </button>
+            </div>
+
+            <p class="note">
+                Email: <strong>hotalnewtamannapalace@gmail.com</strong>  
+                (Formspree endpoint set karne ke baad yahi par booking mails aayengi).
+            </p>
+        </form>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact & Location</h2>
+        <p><strong>Phone (Reception):</strong> 7509907429</p>
+        <p><strong>Inquiry Contacts:</strong> 6267523044, 7000907429</p>
+        <p><strong>Address:</strong> 3A, Sawan Nagar, Lalghati, Indore Road, Bhopal (M.P.)</p>
+        <p><strong>Email:</strong> hotalnewtamannapalace@gmail.com</p>
+    </section>
+
+    <footer>
+        &copy; 2025 Hotel New Tamanna Palace. All rights reserved.
+    </footer>
+
+    <script>
+        // Date validation
+        const bookingForm = document.getElementById('booking-form');
+        bookingForm.addEventListener('submit', function(e) {
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            if (checkin && checkout && checkin > checkout) {
+                e.preventDefault();
+                alert('Check-out date check-in se aage honi chahiye.');
+            }
+        });
+
+        // WhatsApp click-to-chat
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        whatsappBtn.addEventListener('click', function() {
+            const name = document.getElementById('full_name').value || '';
+            const phone = document.getElementById('phone').value || '';
+            const email = document.getElementById('email').value || '';
+            const checkin = document.getElementById('checkin').value || '';
+            const checkout = document.getElementById('checkout').value || '';
+            const guests = document.getElementById('guests').value || '';
+            const roomType = document.getElementById('room_type').value || '';
+            const msg = document.getElementById('message').value || '';
+
+            const hotelWhatsApp = "917509907429"; // 91 + 10 digit
+
+            let text = "New Booking Request%0A";
+            text += "Name: " + encodeURIComponent(name) + "%0A";
+            text += "Phone: " + encodeURIComponent(phone) + "%0A";
+            if (email) text += "Email: " + encodeURIComponent(email) + "%0A";
+            text += "Check-in: " + encodeURIComponent(checkin) + "%0A";
+            text += "Check-out: " + encodeURIComponent(checkout) + "%0A";
+            text += "Guests: " + encodeURIComponent(guests) + "%0A";
+            text += "Room Type: " + encodeURIComponent(roomType) + "%0A";
+            if (msg) text += "Message: " + encodeURIComponent(msg) + "%0A";
+
+            const waUrl = "https://wa.me/" + hotelWhatsApp + "?text=" + text;
+            window.open(waUrl, "_blank");
+        });
+
+        // SLIDER SCRIPT (auto + manual) [web:134][web:151]
+        let slideIndex = 0;
+        let slideTimer = null;
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("mySlide");
+            const dots = document.getElementsByClassName("dot");
+
+            if (n !== undefined) {
+                slideIndex = n;
+            }
+
+            if (slideIndex >= slides.length) { slideIndex = 0; }
+            if (slideIndex < 0) { slideIndex = slides.length - 1; }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active-dot");
+            }
+
+            slides[slideIndex].style.display = "block";
+            if (dots[slideIndex]) dots[slideIndex].classList.add("active-dot");
+        }
+
+        function autoSlides() {
+            slideIndex++;
+            showSlides(slideIndex);
+            slideTimer = setTimeout(autoSlides, 4000); // 4 second
+        }
+
+        function changeSlide(n) {
+            clearTimeout(slideTimer);
+            slideIndex += n;
+            showSlides(slideIndex);
+            slideTimer = setTimeout(autoSlides, 4000);
+        }
+
+        function currentSlide(n) {
+            clearTimeout(slideTimer);
+            slideIndex = n - 1;
+            showSlides(slideIndex);
+            slideTimer = setTimeout(autoSlides, 4000);
+        }
+
+        // init
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlides(0);
+            slideTimer = setTimeout(autoSlides, 4000);
+        });
+    </script>
+</body>
+</html>
